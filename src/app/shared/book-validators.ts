@@ -1,4 +1,4 @@
-import { FormControl, FormArray, ValidationErrors } from '@angular/forms';
+import { FormControl, FormArray, ValidationErrors, AbstractControl } from '@angular/forms';
 
 export class BookValidators {
 
@@ -17,8 +17,8 @@ export class BookValidators {
     }
   }
 
-  static atLeastOneAuthor(controlArray: FormArray): ValidationErrors | null {
-    if (controlArray.controls.some(el => el.value)) {
+  static atLeastOneAuthor(controlArray: AbstractControl): ValidationErrors | null {
+    if ((controlArray as FormArray).controls.some(el => el.value)) {
       return null;
     } else {
       return {
